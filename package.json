@@ -18,7 +18,8 @@
     "lint": "next lint",
     "format": "prettier --ignore-path .gitignore \"pages/**/*.+(ts|js|tsx)\" --write",
     "postinstall": "husky install",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
