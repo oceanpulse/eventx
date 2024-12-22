@@ -131,6 +131,7 @@ contract EventX is Ownable, ReentrancyGuard, ERC721 {
         require(events[eventId].owner == msg.sender || msg.sender == owner(), "Unauthorized entity");
         require(!events[eventId].paidOut, "Event have already been paid out");
         require(!events[eventId].refunded, "Event already refunded");
+        
         // perform refund...
         events[eventId].deleted = true;
     }
@@ -192,8 +193,29 @@ contract EventX is Ownable, ReentrancyGuard, ERC721 {
         balance += msg.value;
     }
 
+    function getTickets(uint256 eventId) public view returns (TicketStruct[] memory) {
+        return tickets[eventId];    
+    }
+
+    function refundTickets(uint256 eventId) internal returns (bool) {
+        for (uint i = 0; i < tickets[eventId].length; i++) {
+            tickets[eventId][i].refunded = true;
+            balance -= tickets[eventId][i].ticketCost;
+            payTo(tickets[eventId][i].owner, tickets[eventId][i].ticketCost);
+            
+        }
+
+        events[eventId].refunded = true;
+        return true;
+    }
+
     function currentTime() internal view returns (uint256) {
         return (block.timestamp * 1000) + 1000;
+    }
+
+    function payTo(address to, uint256 amount) internal {
+        (bool success, ) = payable(to).call{value: amount}('');
+        require(success);
     }
 
 }
