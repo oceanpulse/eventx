@@ -85,7 +85,58 @@ contract EventX is Ownable, ReentrancyGuard, ERC721 {
         eventX.endsAt = endsAt;
         eventX.owner = msg.sender;
         eventX.timestamp = currentTime();
+
+        eventExists[eventX.id] = true;
+        events[eventX.id] = eventX;
     }
+
+    // update event
+    function updateEvent(
+            uint256 eventId,
+            string memory title,
+            string memory description,
+            string memory imageUrl,
+            uint256 capacity,
+            uint256 ticketCost,
+            uint256 startsAt,
+            uint256 endsAt
+    ) public {
+        require(eventExists[eventId], "Event does not exist");
+        require(events[eventId].owner == msg.sender, "Unauthorized entity");
+        require(ticketCost > 0 ether, "Ticket cost must be greater than 0");
+        require(capacity > 0, "Capacity must be greater than 0");
+        require(bytes(title).length > 0, "Title cannot be empty");
+        require(bytes(description).length > 0, "Description cannot be empty");
+        require(bytes(imageUrl).length > 0, "Image URL cannot be empty");
+        require(startsAt > 0, "Start date must be greater than 0");
+        require(endsAt > startsAt, "End date must be greater than start date");
+
+       
+        EventStruct memory eventX = events[eventId];
+        eventX.title = title;
+        eventX.description = description;
+        eventX.imageUrl = imageUrl;
+        eventX.capacity = capacity;
+        eventX.ticketCost = ticketCost;
+        eventX.startsAt = startsAt;
+        eventX.endsAt = endsAt;
+        events[eventX.id] = eventX;
+    }
+
+    // delete event
+    function deleteEvent(
+            uint256 eventId
+    ) public {
+        require(eventExists[eventId], "Event does not exist");
+        require(events[eventId].owner == msg.sender || msg.sender == owner(), "Unauthorized entity");
+        require(!events[eventId].paidOut, "Event have already been paid out");
+        require(!events[eventId].refunded, "Event already refunded");
+        // perform refund...
+        events[eventId].deleted = true;
+    }
+    
+
+
 
     function currentTime() internal view returns (uint256) {
         return (block.timestamp * 1000) + 1000;
