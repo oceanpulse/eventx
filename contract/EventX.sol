@@ -136,7 +136,61 @@ contract EventX is Ownable, ReentrancyGuard, ERC721 {
     }
     
 
+    function getEvents() public view returns (EventStruct[] memory Events) {
+        uint256 available;
+        for (uint256 i = 0; i <= _totalEvents.current(); i++) {
+            if(!events[1].deleted && events[i].owner == msg.sender) available++;
+        }
 
+        Events = new EventStruct[](available);
+        uint256 index;
+        for (uint256 i = 0; i <= _totalEvents.current(); i++) {
+            if(!events[1].deleted && events[i].owner == msg.sender) {
+                Events[index++] = events[i];
+            }
+        }
+        
+    }
+
+    function getMyEvents() public view returns (EventStruct[] memory Events) {
+        uint256 available;
+        for (uint256 i = 0; i <= _totalEvents.current(); i++) {
+            if(!events[1].deleted) available++;
+        }
+
+        Events = new EventStruct[](available);
+        uint256 index;
+        for (uint256 i = 0; i <= _totalEvents.current(); i++) {
+            if(!events[1].deleted) {
+                Events[index++] = events[i];
+            }
+        }
+        
+    }
+
+    function getSingleEvent(uint256 eventId) public view returns (EventStruct memory) {
+        return events[eventId];    
+    }
+
+    function buyTickets(uint256 eventId, uint256 numOfticket) public payable {
+        require(eventExists[eventId], "Event does not exist");
+        require(numOfticket > 0 && numOfticket <= 3, 'Number of tickets must be between 1 - 3');
+        require(msg.value >= numOfticket * events[eventId].ticketCost, 'Insufficient funds');
+        require(events[eventId].seats + numOfticket <= events[eventId].capacity, 'Not enough seats available');
+
+        for (uint i = 0; i < numOfticket; i++) {
+            TicketStruct memory ticket;
+            ticket.id = tickets[eventId].length;
+            ticket.eventId = eventId;
+            ticket.owner = msg.sender;
+            ticket.ticketCost = events[eventId].ticketCost;
+            ticket.timestamp = currentTime();
+            tickets[eventId].push(ticket);
+        }
+
+        events[eventId].seats += numOfticket;
+        balance += msg.value;
+    }
 
     function currentTime() internal view returns (uint256) {
         return (block.timestamp * 1000) + 1000;
