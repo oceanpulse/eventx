@@ -126,13 +126,13 @@ contract EventX is Ownable, ReentrancyGuard, ERC721 {
     // delete event
     function deleteEvent(
             uint256 eventId
-    ) public {
+    ) public nonReentrant() {
         require(eventExists[eventId], "Event does not exist");
         require(events[eventId].owner == msg.sender || msg.sender == owner(), "Unauthorized entity");
         require(!events[eventId].paidOut, "Event have already been paid out");
         require(!events[eventId].refunded, "Event already refunded");
-        
-        // perform refund...
+        require(refundTickets(eventId), "Event faled to refund");
+
         events[eventId].deleted = true;
     }
     
@@ -206,6 +206,34 @@ contract EventX is Ownable, ReentrancyGuard, ERC721 {
         }
 
         events[eventId].refunded = true;
+        return true;
+    }
+
+    function payout(uint256 eventId) public {
+        require(eventExists[eventId], 'Event does not exist');
+        require(!events[eventId].paidOut, 'Event already paid out');
+        require(currentTime() > events[eventId].endsAt, 'Event has not ended');
+        require(events[eventId].owner == msg.sender || msg.sender == owner(), "Unauthorized entity");
+        require(mintTickets(eventId), "Tickets not minted" );
+        //... mint nfts to them
+        uint256 revenue = events[eventId].ticketCost * events[eventId].seats;
+        uint256 fee = (revenue * servicePct) / 100;
+        
+        payTo(events[eventId].owner, revenue - fee);
+        payTo(owner(), fee);
+
+        events[eventId].paidOut = true;
+        balance -= revenue;
+    }
+
+    function mintTickets(uint256 eventId) internal returns (bool) {
+        for (uint i = 0; i < tickets[eventId].length; i++) {
+            _totalTokens.increment();
+            tickets[eventId][i].minted = true;
+    		_mint(tickets[eventId][i].owner, _totalTokens.current());
+        }
+
+        events[eventId].minted = true;
         return true;
     }
 
