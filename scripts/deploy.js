@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 const { ethers } = require('hardhat')
 const fs = require('fs')
+
 
 async function deployContract() {
   let contract
@@ -16,6 +19,26 @@ async function deployContract() {
     throw error
   }
 }
+
+// async function deployContract() {
+//   const [deployer] = await ethers.getSigners(); // Get the first signer (deployer account)
+
+//   console.log(`Deploying contracts with the account: ${deployer.address}`);
+  
+//   const servicePct = 5;
+
+//   try {
+//     const ContractFactory = await ethers.getContractFactory('DappEventX', deployer); // Attach the signer here
+//     const contract = await ContractFactory.deploy(servicePct); // Deploy the contract
+//     await contract.deployed(); // Wait for deployment to complete
+
+//     console.log('Contract deployed successfully at:', contract.address);
+//     return contract;
+//   } catch (error) {
+//     console.error('Error deploying contracts:', error);
+//     throw error;
+//   }
+// }
 
 async function saveContractAddress(contract) {
   try {
