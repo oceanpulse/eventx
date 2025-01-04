@@ -66,9 +66,9 @@ const EventActions: React.FC<{ event: EventStruct }> = ({ event }) => {
     <Menu as="div" className="inline-block text-left text-gray-300 relative">
       <Menu.Button
         className="bg-transparent p-2 rounded-full py-3 px-5
-        text-black hover:bg-orange-500 hover:text-white
+        text-black hover:bg-teal-500 hover:text-white
         duration-300 transition-all flex justify-start items-center
-        space-x-2 border border-black hover:border-orange-500"
+        space-x-2 border border-black hover:border-teal-500"
       >
         <BiDotsVerticalRounded size={17} /> <span>More</span>
       </Menu.Button>

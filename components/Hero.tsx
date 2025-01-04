@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
             <h1 className="text-4xl tracking-tight font-bold text-gray-900 sm:text-5xl sm:tracking-tight md:text-6xl md:tracking-tight">
               <span className="block xl:inline text-[#010125]">Bring Events To The</span>
               <br />
-              <span className="block text-orange-500 xl:inline"> Web3 Marketplace</span>
+              <span className="block text-teal-500 xl:inline"> Web3 Marketplace</span>
             </h1>
 
             <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
@@ -29,9 +29,9 @@ const Hero: React.FC = () => {
               </Link>
 
               <button
-                className="bg-orange-500 p-2 rounded-full py-3 px-4
-                text-white mx-4 hover:bg-transparent border hover:text-orange-500
-                hover:border-orange-500 duration-300 transition-all"
+                className="bg-teal-500 p-2 rounded-full py-3 px-4
+                text-white mx-4 hover:bg-transparent border hover:text-teal-500
+                hover:border-teal-500 duration-300 transition-all"
               >
                 Explore Marketplace
               </button>

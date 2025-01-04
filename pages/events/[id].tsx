@@ -81,7 +81,7 @@ const Page: NextPage<ComponentProps> = ({ eventData, ticketsData }) => {
                 )}
 
                 {Date.now() > event.startsAt && getExpiryDate(event.endsAt) !== 0 && (
-                  <p className="text-orange-500">Ends in {getExpiryDate(event.endsAt)} days</p>
+                  <p className="text-teal-500">Ends in {getExpiryDate(event.endsAt)} days</p>
                 )}
 
                 {Date.now() > event.endsAt && <p className="text-red-500">Expired</p>}
@@ -92,9 +92,9 @@ const Page: NextPage<ComponentProps> = ({ eventData, ticketsData }) => {
               {event.endsAt > Date.now() && (
                 <button
                   onClick={() => dispatch(setTicketModal('scale-100'))}
-                  className="bg-orange-500 p-2 rounded-full py-3 px-10
-                text-white hover:bg-transparent border hover:text-orange-500
-                hover:border-orange-500 duration-300 transition-all"
+                  className="bg-teal-500 p-2 rounded-full py-3 px-10
+                text-white hover:bg-transparent border hover:text-teal-500
+                hover:border-teal-500 duration-300 transition-all"
                 >
                   Buy Ticket
                 </button>

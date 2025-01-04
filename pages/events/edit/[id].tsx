@@ -195,9 +195,9 @@ const Page: NextPage<{ eventData: EventStruct }> = ({ eventData }) => {
           <div className="flex space-x-2 mt-5">
             <button
               type="submit"
-              className="bg-orange-500 p-2 rounded-full py-3 px-10
-            text-white hover:bg-transparent border hover:text-orange-500
-            hover:border-orange-500 duration-300 transition-all"
+              className="bg-teal-500 p-2 rounded-full py-3 px-10
+            text-white hover:bg-transparent border hover:text-teal-500
+            hover:border-teal-500 duration-300 transition-all"
             >
               Update
             </button>
@@ -206,9 +206,9 @@ const Page: NextPage<{ eventData: EventStruct }> = ({ eventData }) => {
               href={'/events/' + event.id}
               type="button"
               className="bg-transparent p-2 rounded-full py-3 px-5
-              text-black hover:bg-orange-500 hover:text-white
+              text-black hover:bg-teal-500 hover:text-white
               duration-300 transition-all flex justify-start items-center
-              space-x-2 border border-black hover:border-orange-500"
+              space-x-2 border border-black hover:border-teal-500"
             >
               Back
             </Link>

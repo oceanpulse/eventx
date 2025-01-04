@@ -35,29 +35,40 @@ const ConnectBtn: React.FC<{ networks?: boolean }> = ({ networks }) => {
             {(() => {
               if (!connected) {
                 return (
+                  // CHANGE THE BUTTON STYLE_1 HERE
                   <button
-                    className="bg-transparent border border-orange-500 hover:bg-orange-600
-                        py-2 px-6 text-orange-500 hover:text-white rounded-full
-                        transition duration-300 ease-in-out"
+                    className="bg-custom-gradient text-white py-2 px-6 rounded-full 
+                              transition duration-300 ease-in-out hover:opacity-80"
+
+                    // className="bg-transparent border border-teal-500 hover:bg-orange-600
+                    //     py-2 px-6 text-teal-500 hover:text-white rounded-full
+                    //     transition duration-300 ease-in-out"
+
                     onClick={openConnectModal}
                     type="button"
                   >
                     Connect Wallet
                   </button>
+                 // END OF CHANGE
                 )
               }
 
               if (chain.unsupported && networks) {
                 return (
+                  // CHANGE THE BUTTON STYLE_2 HERE
                   <button
-                    className="bg-transparent border border-orange-500 hover:bg-orange-600
-                        py-2 px-6 text-orange-500 hover:text-white rounded-full
-                        transition duration-300 ease-in-out"
+                    className="bg-custom-gradient text-white py-2 px-6 rounded-full 
+                              transition duration-300 ease-in-out hover:opacity-80"
+
+                    // className="bg-transparent border border-teal-500 hover:bg-orange-600
+                    //     py-2 px-6 text-teal-500 hover:text-white rounded-full
+                    //     transition duration-300 ease-in-out"
                     onClick={openChainModal}
                     type="button"
                   >
                     Wrong network
                   </button>
+                  // END OF CHANGE
                 )
               }
 
@@ -67,10 +78,15 @@ const ConnectBtn: React.FC<{ networks?: boolean }> = ({ networks }) => {
                     <button
                       onClick={openChainModal}
                       style={{ display: 'flex', alignItems: 'center' }}
-                      className="bg-transparent border border-orange-500 hover:bg-orange-600
-                    py-2 px-6 text-orange-500 hover:text-white rounded-full
-                    transition duration-300 ease-in-out"
+                      // CHANGE THE BUTTON STYLE_3 HERE
+                      className="bg-custom-gradient text-white py-2 px-6 rounded-full 
+                              transition duration-300 ease-in-out hover:opacity-80"
+
+                      //   className="bg-transparent border border-teal-500 hover:bg-orange-600
+                      // py-2 px-6 text-teal-500 hover:text-white rounded-full
+                      // transition duration-300 ease-in-out"
                       type="button"
+                      // END OF CHANGE
                     >
                       {chain.hasIcon && (
                         <div
@@ -98,11 +114,16 @@ const ConnectBtn: React.FC<{ networks?: boolean }> = ({ networks }) => {
                   )}
 
                   <button
-                    className="bg-transparent border border-orange-500 hover:bg-orange-600
-                    py-2 px-6 text-orange-500 hover:text-white rounded-full
-                    transition duration-300 ease-in-out"
+                    // CHANGE THE BUTTON STYLE_4 HERE
+                    className="bg-custom-gradient text-white py-2 px-6 rounded-full 
+                              transition duration-300 ease-in-out hover:opacity-80"
+
+                    // className="bg-transparent border border-teal-500 hover:bg-orange-600
+                    // py-2 px-6 text-teal-500 hover:text-white rounded-full
+                    // transition duration-300 ease-in-out"
                     onClick={openAccountModal}
                     type="button"
+                    // END OF CHANGE
                   >
                     {account.displayName}
                     {/* {account.displayBalance

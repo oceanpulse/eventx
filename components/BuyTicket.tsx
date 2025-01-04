@@ -46,7 +46,7 @@ const BuyTicket: React.FC<{ event: EventStruct }> = ({ event }) => {
       className={`fixed top-0 left-0 w-screen h-screen flex items-center justify-center
         bg-black bg-opacity-50 transform z-50 transition-transform duration-300 ${ticketModal}`}
     >
-      <div className="bg-white text-black shadow-md shadow-orange-500 rounded-xl w-11/12 md:w-2/5 h-7/12 p-6">
+      <div className="bg-white text-black shadow-md shadow-teal-500 rounded-xl w-11/12 md:w-2/5 h-7/12 p-6">
         <div className="flex flex-col">
           <div className="flex flex-row justify-between items-center">
             <p className="font-semibold">Buy Tickets</p>
@@ -79,9 +79,9 @@ const BuyTicket: React.FC<{ event: EventStruct }> = ({ event }) => {
 
             <button
               type="submit"
-              className="bg-orange-500 p-2 rounded-full py-3 px-10
-            text-white hover:bg-transparent border hover:text-orange-500
-            hover:border-orange-500 duration-300 transition-all"
+              className="bg-teal-500 p-2 rounded-full py-3 px-10
+            text-white hover:bg-transparent border hover:text-teal-500
+            hover:border-teal-500 duration-300 transition-all"
             >
               Buy Now
             </button>

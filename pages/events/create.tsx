@@ -207,9 +207,9 @@ const Page: NextPage = () => {
           <div className="mt-5">
             <button
               type="submit"
-              className="bg-orange-500 p-2 rounded-full py-3 px-10
-            text-white hover:bg-transparent border hover:text-orange-500
-            hover:border-orange-500 duration-300 transition-all"
+              className="bg-teal-500 p-2 rounded-full py-3 px-10
+            text-white hover:bg-transparent border hover:text-teal-500
+            hover:border-teal-500 duration-300 transition-all"
             >
               Submit
             </button>

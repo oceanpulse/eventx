@@ -37,7 +37,7 @@ const Page: NextPage = () => {
       {collection.length > 0 && events.length > collection.length && (
         <div className="w-full flex justify-center items-center">
           <button
-            className="bg-orange-500 shadow-md rounded-full py-3 px-4
+            className="bg-teal-500 shadow-md rounded-full py-3 px-4
         text-white duration-300 transition-all"
             onClick={() => setEnd(end + count)}
           >
